@@ -1,0 +1,390 @@
+/* css header */
+.first_backg{
+
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+    margin-top: 0% !important;
+    margin-bottom: 0% !important;
+}
+.first_nav{
+    margin-left: 20% !important;
+
+
+}
+@media only screen and (max-width: 600px) {
+    .first_nav {
+        margin-left: 0% !important;    }
+}
+
+/* css second header */
+.ftco_navbar{
+    opacity:1 !important;
+
+    background-color: none !important;
+}
+.logo_nav{
+    opacity: 1 !important;
+    font-weight:bold !important;
+}
+
+/* slider css */
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+.img_cover{
+    width: 100% !important;
+    height: 580px !important;
+    opacity: 1 !important;
+}
+@media only screen and (max-width: 600px) {
+    .img_cover {
+        height:350px !important;    }
+}
+@media screen and (max-width: 800px) and (min-width: 601px) {
+    .img_cover {
+        height:400px !important;    }
+}
+
+
+/* cart css */
+#main-cat {
+    text-align: center;
+    margin-top: 5% !important;
+}
+
+#main-cat .box .icon {
+    position: absolute;
+    font-size: 120px;
+    width: 100%;
+    text-align: center;
+    top: -20px;
+    left: 0;
+    height: 100%;
+    float: left;
+    color: #eee;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    z-index: 1;
+
+}
+
+#main-cat .box h3 {
+    position: relative;
+    margin: 0 0 10px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    z-index: 2;
+}
+
+#main-cat .box h3 a:hover {
+    text-decoration: none;
+}
+
+#main-cat .box p {
+    position: relative;
+    color: #555;
+    z-index: 2;
+}
+.clickable {
+    cursor: pointer;
+}
+
+.box {
+    background: #fff;
+    margin: 0 0 30px;
+    border: solid 1px #e6e6e6;
+    padding: 20px;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* all categories begin css */
+
+
+.card_categories{
+    background-color: #FFEBCD !important;
+}
+
+.inp_all_cat{
+    width: 90%;
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.sub_all_cat {
+    margin-top: 1%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 2%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+    box-shadow: 0 3px #999;
+    cursor: pointer;
+    outline: none;
+    margin-left: 35%;
+}
+.sub_all_cat:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+
+.sub_all_cat:hover {
+    background-color: #45a049;
+}
+
+
+
+.col-20 {
+    float: left;
+    width: 20%;
+    margin-top: 5px;
+}
+
+.col-70 {
+    float: left;
+    width: 68%;
+    margin-top: 5px;
+}
+
+.row_form_allcat:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.icons_all_categories{
+    position: relative;
+    top:5px !important;
+}
+.hover_all_categories:hover{
+    color: #3e8e41 !important;
+}
+.color_all_categories{
+    color: #6A5ACD	 !important;
+    font-weight: normal !important;
+}
+
+.border_all_categories{
+    clear: both;
+    border:2 px solid black !important;
+    text-decoration: none !important;
+    color: black;
+}
+.border_all_categories:hover{
+    color: black;
+}
+
+.border_all_categories .price_all_categories{
+    color: darkgoldenrod !important;
+    font-weight: bold;
+}
+
+.border_all_categories .time_all_categories{
+    float: right;
+    position: relative;
+    right: 3% !important;
+
+}
+
+/* all categories end css */
+
+
+
+/* mon produit debut css */
+
+
+.tag_price_product{
+    display: inline-block;
+
+    width: auto;
+    height: 38px;
+
+    background-color: #4AA02C;
+    -webkit-border-radius: 3px 4px 4px 3px;
+    -moz-border-radius: 3px 4px 4px 3px;
+    border-radius: 3px 4px 4px 3px;
+
+    border-left: 1px solid #979797;
+
+    /* This makes room for the triangle */
+    margin-left: 19px;
+
+    position: relative;
+
+    color: #FFF8C6;
+
+    font-weight: 300;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 22px;
+    line-height: 38px;
+
+    padding: 0 10px 0 10px;
+}
+/* Makes the triangle */
+.tag_price_product:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: -19px;
+    width: 0;
+    height: 0;
+    border-top: 19px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-right: 19px solid #4AA02C;
+}
+
+/* Makes the circle */
+.tag_price_product:after {
+    content: "";
+    background-color:#FFF8C6;
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+    display: block;
+    position: absolute;
+    left: -9px;
+    top: 17px;
+}
+.fa_product:hover {
+    opacity: 0.7;
+}
+.img-magnifier-container {
+    position:relative;
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 100px;
+    height: 100px;
+}
+.like_button {
+    height:35px;
+    margin:0 auto;
+    position: relative;
+}
+
+.i_like_button {
+    cursor:pointer;
+    padding:10px 12px 8px;
+    background:#fff;
+    border-radius:50%;
+    display:inline-block;
+    margin:0 0 15px;
+    color:#aaa;
+    transition:.2s;
+}
+
+.i_like_button:hover {
+    color:#666;
+}
+
+.i_like_button:before {
+    font-family:fontawesome;
+    content:'\f004';
+    font-style:normal;
+}
+
+
+.i_like_button.press {
+    animation: size .4s;
+    color:#e23b3b;
+}
+
+.price_similar_product{
+    color: darkgoldenrod !important;
+    font-weight: bold;
+}
+
+
+/* mon produit fin css */
+
+
+
+/* BEGINING OF THE USER CSS */      
+
+.user_css{
+    margin-bottom: 3% !important;
+    padding:3%;
+}
+
+.user_css a{
+    text-decoration: none;
+}
+
+/* ENDINING OF THE USER CSS */      
+
+
+/* ORDER  DEBUT OF THE USER CSS */   
+
+.btn_delete {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* ORDER  DEBUT OF THE USER CSS */   
+
+/* ORDER  DEBUT OF THE USER CSS */   
+
+.btn_edite{
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* ORDER  DEBUT OF THE USER CSS */  
+
+
+
+/* starding my profile */
+
+.my_profile{
+    text-align: center;
+}
+.my_profile input,select{
+    width: 40%;
+}
+.my_profile_button{
+    width: auto !important;
+}
+/* ending my profile */
+
+
+
+/* footer */
+.icon-twitter,.icon-facebook,.icon-instagram{
+    padding-left: 10% !important;
+}
+.hr_footer{
+    color: white !important;
+}
+.p_footer{
+    color: white;
+    text-align: center;
+}
+.h6_span_footer{
+    color: white ;
+}
+.hr_footer{
+    border-top: 0.5px solid white;
+}
