@@ -27,12 +27,12 @@
                         <table id="mytable" class="table table-bordred table-striped table-hover">
                            <thead>
                               <th>id</th>
-                              <th>user email</th>
+                              <th>Name</th>
                               <th>address</th>
                               <th>phone</th>
                               <th>Total price</th>
                               <th>date</th>
-                              <th>payment</th>
+                              
                               <th>State</th>
                               
                               <th>Delete</th>
@@ -45,7 +45,7 @@
                                  <td>{{$info->name}}</td>
                                  <td>{{$info->email}}</td>
                                  <td>{{returnCity($info->id)}}</td>
-                                 <td>{{returnAddress($info->id)}}</td>
+                                 
                                  <td>{{returnPhone($info->id)}}</td>
                                  <th>Sdsdfddate</th>
                                  <th>Statdsdfcde</th>

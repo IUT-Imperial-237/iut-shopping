@@ -50,10 +50,7 @@
                                   <td>{{$info->email}}</td>
                               
                                  <td>{{$info->email}}</td>
-                                
-                               
-
-                                
+     
                                  <td>
                                     
                                     <p data-placement="top" data-toggle="tooltip" title="Block"><button class="btn btn-success btn-xs" data-title="Edit" data-toggle="modal" data-target="#block" ><i class="fas fa-edit"></i></button></p>

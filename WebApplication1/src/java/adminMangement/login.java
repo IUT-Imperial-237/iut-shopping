@@ -93,10 +93,11 @@ public class login extends HttpServlet {
            String email = request.getParameter("email");
            String password = request.getParameter("password");
               try {
-                  boolean t = user.login(email,password);
-                  if(t){
+                  int t = user.login(email,password);
+                  if(t!=0){
                         session.setAttribute("email",email);
                         session.setAttribute("isAdmin","1");
+                        session.setAttribute("authid",Integer.toString(t));
                               response.sendRedirect("admin-pan.jsp");
                   
                   }

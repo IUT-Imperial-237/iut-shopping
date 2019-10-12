@@ -63,14 +63,16 @@ public class users implements java.io.Serializable {
         
     }
     
-     public boolean login(String email, String password) throws SQLException {
+     public int login(String email, String password) throws SQLException {
 
         rs = st.executeQuery("select *  from users where email='"+email+ "' and "+ "password ='"+ password+"'"+ " and "+ "isAdmin ='"+ "1"+"'");
-              if( rs.next()){
-          return true;
-     }
-              else 
-        return false;
+               while(rs.next()){
+                  int _id = rs.getInt("id");
+                // System.out.println("my Id is :  " + rs.getInt("id"));            
+               // return   rs.getInt("id");
+                 return _id;
+           }
+        return 0;
     }
 
     public ResultSet getAllUsers() throws SQLException {
