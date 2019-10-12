@@ -92,8 +92,8 @@
                                     
                                     
                                     while(rss.next()){
-                           out.println( "<h2 style='text-align:center'>"+rss.getString("title")+ "in" +"address" + "</h2>");
-                            out.println("<p style='text-align:center '><span>For sale by</span><span>" +rss.getString("id") +"</span><span>" +rss.getString("created_at") + "</span></p>");
+                           out.println( "<h2 style='text-align:center'>"+rss.getString("title")+  "</h2>");
+                            out.println("<p style='text-align:center '>"  +"<span>" +rss.getString("created_at") + "</span></p>");
 
                             out.println("<div class='img-magnifier-container'>");
                               out.println("<img id='myimage' src='productPicture/" + rss.getString("picture")+"'"+ " width='100%'>");

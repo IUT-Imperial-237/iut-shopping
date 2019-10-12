@@ -33,6 +33,10 @@
 						Member Login
 					</span>
                                   <%
+                                   if(session.getAttribute("notification")!=null)
+                                
+                                       out.println("<h3 style='color:red;'>"+ session.getAttribute("notification")+"</h3>");
+                                  
                                     if(session.getAttribute("errorLogin")!=null)
                                 
                                        out.println("<h3 style='color:red;'>"+ session.getAttribute("errorLogin")+"</h3>"); 

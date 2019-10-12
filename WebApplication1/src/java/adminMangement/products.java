@@ -16,7 +16,7 @@ import java.sql.Statement;
  * @author IUT
  */
 public class products implements java.io.Serializable{
-    private String title, description, picture, isBlocked,isValidate,phone,created_at;
+    private String title, description, picture, isBlocked,isValidate,phone,created_at,category;
     private long id , user;
     private int price;
     private Statement st = null;
@@ -26,7 +26,9 @@ public class products implements java.io.Serializable{
     public InputStream getInputStream() {
         return inputStream;
     }
-
+ public void setCategory(String _cat) {
+        this.category = _cat;
+    }
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
@@ -42,7 +44,15 @@ public class products implements java.io.Serializable{
         
     }
 
-      public ResultSet getAllProducts() throws SQLException {
+      public ResultSet getMyAdds(String _id) throws SQLException {
+          System.out.println("nestis " + _id);
+          int rid = Integer.parseInt(_id);
+        rs = st.executeQuery("select *  from products where user=" + rid);
+
+        return rs;
+    }
+      
+       public ResultSet getAllProducts() throws SQLException {
 
         rs = st.executeQuery("select *  from products where isBlocked='0' and isActive='1'");
 
@@ -52,14 +62,19 @@ public class products implements java.io.Serializable{
     
      public boolean addProduct(products p) throws SQLException {
        
-         int a = st.executeUpdate("INSERT INTO products (title,description,phone,price,picture,user) " + 
-                "VALUES ('" + p.getTitle()+"',"+"'"+ p.getDescription()+"' ," +"'"+ p.getPhone()+"' ,"+p.getPrice()+" ,"+"'"+ p.getPicture()+"',"+  p.getUser() +")");
+         int a = st.executeUpdate("INSERT INTO products (title,description,phone,price,picture,category,user) " + 
+                "VALUES ('" + p.getTitle()+"',"+"'"+ p.getDescription()+"' ," +"'"+ p.getPhone()+"' ,"+p.getPrice()+" ,"+"'"+ p.getPicture()+"'," + "'" + p.getCategory()+ "',"+  p.getUser() +")");
       
         if(a!=0)
         return true;
        else
            return false;
     }
+     
+     public String getCategory() {
+        return category;
+    }
+     
     public String getTitle() {
         return title;
     }

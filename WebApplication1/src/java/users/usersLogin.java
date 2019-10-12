@@ -8,7 +8,7 @@ package users;
 import adminMangement.adminManagement;
 import adminMangement.categories;
 import adminMangement.subcategories;
-import adminMangement.users;
+import adminBean.users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -83,6 +83,23 @@ public class usersLogin extends HttpServlet {
 
        
        }
+          
+              if (request.getParameter("action").equals("login"))
+       {
+           session = request.getSession();
+           if(session.getAttribute("email")!= null)
+           {
+           response.sendRedirect("myadd.jsp");
+           
+           }
+           else{
+           
+           response.sendRedirect("userLogin.jsp");
+           
+           }
+
+       
+       }
     }
         
     
@@ -100,20 +117,17 @@ public class usersLogin extends HttpServlet {
             throws ServletException, IOException {
         
          HttpSession session =  request.getSession(true);
-            if (request.getParameter("action").equals("login")) {
+           
            String email = request.getParameter("email");
            String password = request.getParameter("password");
               try {
-                  
-                  if(session.getAttribute("emai")!=null){
-                      
-                        response.sendRedirect("myadd.jsp");
-                  } 
+                   
                   int  t = user.userLogin(email,password);
                   if(t!=0){
                         session.setAttribute("email",email);
-                       session.setAttribute("authid",t);
-                              response.sendRedirect("myadd.jsp");
+                       session.setAttribute("authid",Integer.toString(t) );
+                       
+                              response.sendRedirect("profile.jsp");
                   
                   }
                   else{
@@ -127,7 +141,7 @@ public class usersLogin extends HttpServlet {
               }
            
         
-        }
+        
     }
 
     /**

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adminMangement;
+package adminBean;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,17 +46,17 @@ public class users implements java.io.Serializable {
     }
     
       public int userLogin(String email, String password) throws SQLException {
-
+       System.out.println("je suis debout");
         rs = st.executeQuery("select *  from users where email='"+email+ "' and "+ "password ='"+ password+"'");
-              if( rs.next()){
-//           while(rs.next()){
-//               System.out.println("je suis amoureux"); 
-//                 System.out.println(rs.getInt("id"));            
-//               // return   rs.getInt("id");
-//                 return 1;
-//           }
-                  return 1;
-     }
+              
+           while(rs.next()){
+                  int _id = rs.getInt("id");
+                // System.out.println("my Id is :  " + rs.getInt("id"));            
+               // return   rs.getInt("id");
+                 return _id;
+           }
+                 
+     
               
               return 0;
               

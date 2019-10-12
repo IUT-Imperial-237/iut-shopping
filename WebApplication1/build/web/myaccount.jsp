@@ -15,7 +15,7 @@
                    
                     <hr>
                     <div class="row">
-                    <div class="col-md-8"> <h5><a href="myadd.jsp">My Ads</a></h5></div>
+                        <div class="col-md-8"> <h5><a href="myadd.jsp?_userId=<%=session.getAttribute("authid")%>">My Ads</a></h5></div>
                     <div class="col-md-4"><span>&#8250;</span></div>
                     </div>
                    

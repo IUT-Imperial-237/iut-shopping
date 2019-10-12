@@ -148,53 +148,9 @@
                          out.println("<span class='time_all_categories'>"+  rss.getString("created_at")+"</span><br></a><hr>");
                                    }
                             %>
+                          
                             
-                            
-                            <a href="product.jsp" class="border_all_categories">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="images/image_2.jpg" class="img-thumbnail" alt="images" width="100"
-                                             height="100">
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <h5><b>name of the product</b></h5>  <br>
-                                        <span class="price_all_categories">TK 5000</span>
-
-                                    </div>
-                                </div>
-                                <span class="time_all_categories">2 min</span><br>
-                            </a>
-                            <hr>
-                            <a href="product.jsp" class="border_all_categories">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="images/image_3.jpg" class="img-thumbnail" alt="images" width="100"
-                                             height="50">
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <h5><b>name of the product</b></h5><br>
-                                        <span class="price_all_categories">TK 5000</span>
-
-                                    </div>
-                                </div>
-                                <span class="time_all_categories">2 min</span><br>
-                            </a>
-                            <hr>
-                            <a href="product.jsp" class="border_all_categories">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="images/image_6.jpg" class="img-thumbnail" alt="images" width="100"
-                                             height="100">
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <h5><b>name of the product</b></h5><br>
-                                        <span class="price_all_categories">TK 5000</span>
-
-                                    </div>
-                                </div>
-                                <span class="time_all_categories">2 min</span><br>
-                            </a>
-                            <hr>
+                 
                         </div>
                     </div>
                 </div>

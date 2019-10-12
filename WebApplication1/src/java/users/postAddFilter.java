@@ -3,13 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adminMangement;
-
-/**
- *
- * @author IUT
- */
-
+package users;
 import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +17,13 @@ import javax.servlet.FilterChain;
 //import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-public  class AdminFilter implements Filter {
+/**
+ *
+ * @author IUT
+ */
+public class postAddFilter implements Filter {
+    
+    
 private FilterConfig filterConfig;
 public void init(FilterConfig filterConfig) throws ServletException {
     System.out.println("Filter initialized");
@@ -40,11 +38,11 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 throws IOException, ServletException {
 HttpSession session = ((HttpServletRequest) request).getSession();
 
-      if(session.getAttribute("email")== null && session.getAttribute("isAdmin")==null)
+      if(session.getAttribute("email")== null )
       {   
-          System.out.println("je susi fache okay");
           
-          RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+          session.setAttribute("notification", "Login to have access");
+          RequestDispatcher rd = request.getRequestDispatcher("userLogin.jsp");
           rd.forward(request, response);
        
       }
@@ -56,4 +54,5 @@ HttpSession session = ((HttpServletRequest) request).getSession();
 }
 
 
+    
 }

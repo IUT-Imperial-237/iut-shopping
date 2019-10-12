@@ -1,4 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
 
+<jsp:useBean id="cat" class="adminMangement.categories" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,13 +34,25 @@
                                    %>
                                  
                                 </div>
+                                   <div class="form-group">
+                                    <label for="category">Category:</label>
+                                    <select class="form-control" name="category">
+                                        <option value="" selected> choose a category</option>
+                                        <% ResultSet rss = cat.getAllCat();
+                                   while(rss.next()){
+                                   out.println("<option value='" + rss.getString("name") + "'>"+ rss.getString("name")+"</option>");
+                                   }
+                                        
+                                        %>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="price">Price:</label>
                                     <input type="number" required class="form-control" id="price" placeholder="Enter the price in TK" name="price">
                                 </div>
                                 <div class="form-group">
                                     <label for="num">Phone Number:</label>
-                                    <input type="number" required class="form-control" id="num" placeholder="Enter the phone number" name="phone">
+                                    <input type="tel"  required class="form-control" id="num" pattern="[0-9]{11}" placeholder="eg:  01872438617 ( 11 digits )" name="phone">
                                 </div>
                                 <div class="form-group">
                                      <label for="file">include a clear Picture of the product</label>

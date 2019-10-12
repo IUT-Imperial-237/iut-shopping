@@ -101,11 +101,13 @@ public class usersManagement extends HttpServlet {
             throws ServletException, IOException {
        session =  request.getSession();
        products p = new products();
+       
        p.setTitle(request.getParameter("title"));
        p.setDescription(request.getParameter("description"));
        p.setPhone(request.getParameter("phone"));
        p.setPrice(Integer.parseInt(request.getParameter("price")));
        p.setUser(Integer.parseInt(request.getParameter("user")));
+        p.setCategory(request.getParameter("category"));
         InputStream inputStream = null; // input stream of the upload file
        // obtains the upload file part in this multipart request
         Part filePart = request.getPart("picture");
@@ -138,7 +140,9 @@ public class usersManagement extends HttpServlet {
             //("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture")
             // File uploads = new File("C:\\Users\\Youssouf\\Documents\\upload");
               
-            File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture");
+           // File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture");
+            File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut-shopping\\WebApplication1\\build\\web\\productPicture");
+
         
             int x = ThreadLocalRandom.current().nextInt(00001, 99999 + 1);
             String pictName ="prod"+ x+".png";

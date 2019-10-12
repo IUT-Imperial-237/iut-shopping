@@ -3,28 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adminMangement;
+package users;
 
-import adminBean.users;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author IUT
  */
-public class login extends HttpServlet {
-    
-    private users user = new users();
-    HttpSession session =  null;
+public class postAddServelet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +35,10 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet postAddServelet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet postAddServelet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,14 +56,9 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       if (request.getParameter("action").equals("logout"))
-       {
-           session = request.getSession();
-         session.invalidate();
-         response.sendRedirect("index.jsp");
-
-       
-       }
+        
+        response.sendRedirect("postad.jsp");
+        
     }
 
     /**
@@ -85,34 +72,7 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            HttpSession session =  request.getSession(true);
-
-        
-            if (request.getParameter("action").equals("adminLogin")) {
-                System.out.println("sorcier");
-           String email = request.getParameter("email");
-           String password = request.getParameter("password");
-              try {
-                  boolean t = user.login(email,password);
-                  if(t){
-                        session.setAttribute("email",email);
-                        session.setAttribute("isAdmin","1");
-                              response.sendRedirect("admin-pan.jsp");
-                  
-                  }
-                  else{
-                   session.setAttribute("errorLogin","email or password incorrect please try again");
-                       response.sendRedirect("login.jsp");
-
-                  
-                  }
-              } catch (SQLException ex) {
-                  Logger.getLogger(adminManagement.class.getName()).log(Level.SEVERE, null, ex);
-              }
-           
-        
-        }
-        
+        processRequest(request, response);
     }
 
     /**

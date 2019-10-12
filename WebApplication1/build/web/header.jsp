@@ -27,7 +27,7 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a href="postad.jsp" class="nav-link"><b>Post Your Ad</b></a></li>
+            <li class="nav-item active"><a href=postAddServelet class="nav-link"><b>Post Your Ad</b></a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">Catetoyies</a>
@@ -47,8 +47,20 @@
           <li class="nav-item"><a href="" class="nav-link"></a></li>
           <li class="nav-item"><a href="" class="nav-link"></a></li>
           <li class="nav-item"><a href="" class="nav-link"></a></li>
-          <li class="nav-item"><a href="userLogin.jsp" class="nav-link">Login</a></li>
-          <li class="nav-item"><a href="registerUser.jsp" class="nav-link">Register</a></li>
+          <% session = request.getSession();
+          if(session.getAttribute("email")!= null)
+          {
+              out.println("<li class='nav-item'><a href=usersLogin?action=logout class='nav-link'>Logout</a></li>");
+          
+          }
+          else{
+                    out.println("<li class='nav-item'><a href=usersLogin?action=login class='nav-link'>Login</a></li>"); 
+                   out.println("<li class='nav-item'><a href='registerUser.jsp' class='nav-link'>Register</a></li>");
+
+          }
+          %>
+          
+          
 
         </ul>
       </div>

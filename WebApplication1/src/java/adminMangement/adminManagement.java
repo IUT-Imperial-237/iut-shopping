@@ -5,6 +5,7 @@
  */
 package adminMangement;
 
+import adminBean.users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -78,6 +79,7 @@ public class adminManagement extends HttpServlet {
             response.sendRedirect("admin-pan.jsp");
         }
         if (request.getParameter("action").equals("categories")) {
+            System.out.println("un vrai sorcier");
             response.sendRedirect("admin-manage-categories.jsp");
         }
         if (request.getParameter("action").equals("sub-categories")) {
@@ -168,11 +170,7 @@ public class adminManagement extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
              session =  request.getSession();
-
-        
-      
-        
-        
+    
         if (request.getParameter("action").equals("addCat")) {
            String name = request.getParameter("name");
             try {
