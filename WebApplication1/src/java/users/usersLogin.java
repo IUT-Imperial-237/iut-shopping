@@ -133,9 +133,7 @@ public class usersLogin extends HttpServlet {
                   else{
                    session.setAttribute("errorLogin","email or password incorrect please try again");
                        response.sendRedirect("userLogin.jsp");
-
-                  
-                  }
+                                   }
               } catch (SQLException ex) {
                   Logger.getLogger(adminManagement.class.getName()).log(Level.SEVERE, null, ex);
               }

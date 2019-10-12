@@ -34,9 +34,9 @@
                            <thead>
                               <th>Product Id</th>
                               <th>title</th>
-                              <th>description</th>
+                             
                               <th>price</th>    
-                              <th>Quantity</th>
+                              
                               <th>Users</th>
                               <th>active/desactive</th>
                               <th>delete</th>
@@ -48,8 +48,7 @@
                                  <td>{{$info->id}}</td>
                                  <td>{{$info->name}}</td>
                                   <td>{{$info->email}}</td>
-                                 <td>{{$info->email}}</td>
-                                   <td>{{$info->email}}</td>
+                              
                                  <td>{{$info->email}}</td>
                                 
                                

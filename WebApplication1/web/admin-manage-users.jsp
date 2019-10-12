@@ -1,6 +1,6 @@
 
 <%@page import="java.sql.ResultSet"%>
-<jsp:useBean id="users" class="adminMangement.users" />
+<jsp:useBean id="users" class="adminBean.users" />
 
 <!DOCTYPE html>
 <html>
