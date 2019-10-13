@@ -40,8 +40,9 @@
                                  out.println("<div class='row'> <div class='col-sm-4'>");
                                out.println(" <img src='productPicture/"+rss.getString("picture")+"'"+  "class='img-thumbnail' alt='product image' width='150' height='150'>");
                                out.println("</div> <div class='col-sm-7'>");
-                               out.println("<h4>"+rss.getString("title")+"</h4><br>");
-                                out.println("<span class='price_all_categories'>"+ rss.getString("price")+"</span>") ;
+                               out.println("<a href='product.jsp?action=productDetails&productId=" +rss.getString("id")+ "' class=''>" );
+                               out.println("<h4>"+rss.getString("title")+"</h4></a><br>");
+                                out.println("<span class='price_all_categories'>"+ rss.getString("price")+" TK"+"</span>") ;
                                 out.println(" </div>");
                                 out.println(" <div class='col-sm-1'>");
                                 out.println("<a href='#'>" + "<button class='btn_edite'><i class='fa fa-edit'></i></button><br><br></a>");

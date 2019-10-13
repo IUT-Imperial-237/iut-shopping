@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package users;
+
 import adminMangement.adminManagement;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
+import adminBean.users;
+import adminBean.favoriteBean;
+import adminBean.ordersBean;
 
 /**
  *
@@ -36,8 +39,9 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 16177215)
 // upload file's size up to 16MB
 public class usersManagement extends HttpServlet {
+
     private static final int BUFFER_SIZE = 4096;
-    HttpSession session =  null;
+    HttpSession session = null;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,14 +54,14 @@ public class usersManagement extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session =  null;
+        HttpSession session = null;
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet usersManagement</title>");            
+            out.println("<title>Servlet usersManagement</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet usersManagement at " + request.getContextPath() + "</h1>");
@@ -78,14 +82,64 @@ public class usersManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        if(request.getParameter("action").equals("productDetails")){
-            RequestDispatcher rd = request.getRequestDispatcher("product.jsp");
-          rd.forward(request, response);
-        
-        
+        session = request.getSession();
+
+        if (request.getParameter("action").equals("cancelOrder")) {
+            ordersBean ord = new ordersBean();
+            try {
+                int flag = ord.cancelOrder(Integer.parseInt(request.getParameter("id")));
+                if (flag != 0) {
+
+                    session.setAttribute("cancelationFeedback", "order canceled successfully");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+
+                } else {
+                    session.setAttribute("cancelationFeedback", "Error occured when canceling the order please try again!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+
         }
-        
+
+        if (request.getParameter("action").equals("deleteFavorite")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            favoriteBean fav = new favoriteBean();
+            try {
+                int flag = fav.deleteFavorites(id);
+                if (flag != 0) {
+
+                    session.setAttribute("favoriteDeletion", "favorite deleted successfully");
+                    RequestDispatcher rd = request.getRequestDispatcher("myfavorite.jsp");
+                    rd.forward(request, response);
+
+                } else {
+                    session.setAttribute("favoriteDeletion", "Error occured when deleting the favorite please try again!!!");
+                    RequestDispatcher rd = request.getRequestDispatcher("myfavorite.jsp");
+                    rd.forward(request, response);
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (request.getParameter("action").equals("productDetails")) {
+            RequestDispatcher rd = request.getRequestDispatcher("product.jsp");
+            rd.forward(request, response);
+
+        }
+
     }
 
     /**
@@ -99,89 +153,111 @@ public class usersManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       session =  request.getSession();
-       products p = new products();
-       
-       p.setTitle(request.getParameter("title"));
-       p.setDescription(request.getParameter("description"));
-       p.setPhone(request.getParameter("phone"));
-       p.setPrice(Integer.parseInt(request.getParameter("price")));
-       p.setUser(Integer.parseInt(request.getParameter("user")));
-        p.setCategory(request.getParameter("category"));
-        InputStream inputStream = null; // input stream of the upload file
-       // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("picture");
-        
-        
-        if (filePart != null) {
-            
-            System.out.println("testeurs testeur testeurs testuers testeurs testuers");
-            System.out.println(filePart.getName());
-            // prints out some information for debugging
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
+        session = request.getSession();
+        products p = new products();
+        ordersBean order = new ordersBean();
+
+        if (request.getParameter("action").equals("placeOrder")) {
+            int x = ThreadLocalRandom.current().nextInt(00001, 99999 + 1);
+            String ordcod = "ord" + x;
+            order.setOrderCode(ordcod);
+            order.setAddress(request.getParameter("address"));
+            order.setDesignation(request.getParameter("designation"));
+            order.setName(request.getParameter("name"));
+            order.setPrice(request.getParameter("price"));
+            order.setPhone(request.getParameter("phone"));
+            order.setUser(Integer.parseInt(request.getParameter("buyer")));
+
+            try {
+                int flag = order.placeOrder(order);
+                if (flag != 0) {
+                    session.setAttribute("placeOrderFeedback", "your order has been placed successfully!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+                } else {
+                    session.setAttribute("placeOrderFeedback", "Sorry we are unable to place this order . try again!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (request.getParameter("action").equals("postad")) {
+
+            p.setTitle(request.getParameter("title"));
+            p.setDescription(request.getParameter("description"));
+            p.setPhone(request.getParameter("phone"));
+            p.setPrice(Integer.parseInt(request.getParameter("price")));
+            p.setUser(Integer.parseInt(request.getParameter("user")));
+            p.setCategory(request.getParameter("category"));
+            InputStream inputStream = null; // input stream of the upload file
+            // obtains the upload file part in this multipart request
+            Part filePart = request.getPart("picture");
+
+            if (filePart != null) {
+
+                System.out.println("testeurs testeur testeurs testuers testeurs testuers");
+                System.out.println(filePart.getName());
+                // prints out some information for debugging
+                System.out.println(filePart.getName());
+                System.out.println(filePart.getSize());
+                System.out.println(filePart.getContentType());
 
             //obtains input stream of the upload file
-            //the InputStream will point to a stream that contains
-            //the contents of the file
-            inputStream = filePart.getInputStream();
-             System.out.println("testeurs testeur testeurs testuers testeurs testuers");
-              System.out.println(inputStream);
-            
-        }
-        
-        if (inputStream != null) {
+                //the InputStream will point to a stream that contains
+                //the contents of the file
+                inputStream = filePart.getInputStream();
+                System.out.println("testeurs testeur testeurs testuers testeurs testuers");
+                System.out.println(inputStream);
+
+            }
+
+            if (inputStream != null) {
                 //files are treated as BLOB objects in database
                 //here we're letting the JDBC driver
                 //create a blob object based on the
                 //input stream that contains the data of the file
-               //p.setInputStream(inputStream);
-            //("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture")
-            // File uploads = new File("C:\\Users\\Youssouf\\Documents\\upload");
-              
-           // File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture");
-            File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut-shopping\\WebApplication1\\build\\web\\productPicture");
+                //p.setInputStream(inputStream);
+                //("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture")
+                // File uploads = new File("C:\\Users\\Youssouf\\Documents\\upload");
 
-        
-            int x = ThreadLocalRandom.current().nextInt(00001, 99999 + 1);
-            String pictName ="prod"+ x+".png";
-            
-            File file = new File(uploads, pictName);
-           // Files.deleteIfExists(file.toPath());
-            Files.copy(inputStream, file.toPath());
-              p.setPicture(pictName);
-           
+                // File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut\\WebApplication1\\web\\productPicture");
+                File uploads = new File("D:\\IUT\\Documents\\NetBeansProjects\\iut-shopping\\WebApplication1\\build\\web\\productPicture");
+
+                int x = ThreadLocalRandom.current().nextInt(00001, 99999 + 1);
+                String pictName = "prod" + x + ".png";
+
+                File file = new File(uploads, pictName);
+                // Files.deleteIfExists(file.toPath());
+                Files.copy(inputStream, file.toPath());
+                p.setPicture(pictName);
+
             }
-        
-        products pro = new products();
-      
-          
-             try {
-                  boolean t = pro.addProduct(p);
-                  if(t){
-                        session.setAttribute("adsaving","ok");
-                              response.sendRedirect("myadd.jsp");
-                  
-                  }
-                  else{
-                   session.setAttribute("errorLogin","sorry we are unabe to post youur ad now pleas try later");
-                       response.sendRedirect("postad.jsp");
 
-                  
-                  }
-              } catch (SQLException ex) {
-                  Logger.getLogger(adminManagement.class.getName()).log(Level.SEVERE, null, ex);
-              }
-           
-       
-       
-       
-       
-       
-        
-        
-        
+            products pro = new products();
+
+            try {
+                boolean t = pro.addProduct(p);
+                if (t) {
+                    session.setAttribute("adsaving", "ok");
+                    response.sendRedirect("myadd.jsp");
+
+                } else {
+                    session.setAttribute("errorLogin", "sorry we are unabe to post youur ad now pleas try later");
+                    response.sendRedirect("postad.jsp");
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(adminManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }
 
     /**

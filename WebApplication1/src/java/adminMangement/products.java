@@ -58,12 +58,40 @@ public class products implements java.io.Serializable{
 
         return rs;
     }
+       
+        public String getPicture()  {
+        return picture;
+    }
     
-    
+          public String getPicture(String product_id) throws SQLException {
+        rs = st.executeQuery("select picture   from products where id=" + Integer.parseInt(product_id));
+        while(rs.next()){
+        picture = rs.getString("picture");
+        }
+        
+        return picture;
+    }
+          
+          
+           public String getTitle(String product_id) throws SQLException {
+        rs = st.executeQuery("select title   from products where id=" + Integer.parseInt(product_id));
+        while(rs.next()){
+        title = rs.getString("title");
+        }
+        
+        return title;
+    }
+     public int getPrice(String product_id) throws SQLException {
+        rs = st.executeQuery("select price   from products where id=" + Integer.parseInt(product_id));
+        while(rs.next()){
+        price = rs.getInt("price");
+        }
+        
+        return price;
+    }
      public boolean addProduct(products p) throws SQLException {
        
-         int a = st.executeUpdate("INSERT INTO products (title,description,phone,price,picture,category,user) " + 
-                "VALUES ('" + p.getTitle()+"',"+"'"+ p.getDescription()+"' ," +"'"+ p.getPhone()+"' ,"+p.getPrice()+" ,"+"'"+ p.getPicture()+"'," + "'" + p.getCategory()+ "',"+  p.getUser() +")");
+      int a = st.executeUpdate("INSERT INTO products (title,description,phone,price,picture,category,user) " +   "VALUES ('" + p.getTitle()+"',"+"'"+ p.getDescription()+"' ," +"'"+ p.getPhone()+"' ,"+p.getPrice()+" ,"+"'"+ p.getPicture()+"'," + "'" + p.getCategory()+ "',"+  p.getUser() +")");
       
         if(a!=0)
         return true;
@@ -91,9 +119,7 @@ public class products implements java.io.Serializable{
         this.description = description;
     }
 
-    public String getPicture() {
-        return picture;
-    }
+ 
 
     public void setPicture(String picture) {
         this.picture = picture;
