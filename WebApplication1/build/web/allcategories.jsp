@@ -135,7 +135,7 @@
                         <div class="col-md-5">
                             
                             <%
-                            ResultSet rss = product.getAllProducts();
+                            ResultSet rss = product.getProductsByCat(request.getParameter("catVal"));
                             
                               
                                    while(rss.next()){

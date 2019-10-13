@@ -32,15 +32,22 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">Catetoyies</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="allcategories.jsp">Electronic</a>
-              <a class="dropdown-item" href="allcategories.jsp">Mobile Phone</a>
-              <a class="dropdown-item" href="allcategories.jsp">Education</a>
-              <a class="dropdown-item" href="allcategories.jsp">Sport</a>
-              <a class="dropdown-item" href="allcategories.jsp">Fashion &amp; Clothing</a>
-              <a class="dropdown-item" href="allcategories.jsp">Services</a>
+              <a class="dropdown-item" href=usersManagement?action=queryByCat&catVal=ELECTRONIC>Electronic</a>
+              <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='MOBILE PHONES'">Mobile Phone</a>
+              <a class="dropdown-item" href=usersManagement?action=queryByCat&catVal=EDUCATION>Education</a>
+              <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='LEISURE, SPORTS'">Sport</a>
+              <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='FASHION AND CLOTHING'">Fashion &amp; Clothing</a>
+              <a class="dropdown-item" href=usersManagement?action=queryByCat&catVal=SERVICES>Services</a>
             </div>
           </li>
-          <li class="nav-item cta cta-colored"><a href="profile.jsp" class="nav-link">My Account</a></li>
+            <% session = request.getSession();
+          if(session.getAttribute("email")!= null)
+          {
+              out.println("<li class='nav-item cta cta-colored'><a href='profile.jsp' class='nav-link'>My Account</a></li>");
+          
+          }
+          %>
+          
            <li class="nav-item"><a href="blog.jsp" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="contact.jsp" class="nav-link">Contact Us</a></li>
           <li class="nav-item"><a href="" class="nav-link"></a></li>

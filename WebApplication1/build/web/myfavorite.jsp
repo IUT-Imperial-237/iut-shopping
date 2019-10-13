@@ -28,12 +28,12 @@
                             <div class="col-lg-8"><br>
                                 <%
                                 if(session.getAttribute("favoriteDeletion")!=null){
-           out.println("<div class='alert alert-warning alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
+           out.println("<div class='alert alert-success alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong>"+session.getAttribute("favoriteDeletion")+"</strong> </div>" );
                             }
-                                                                      
-                                %>
+         %>
+                               
                                 <h3 class="lead">My Favorite</h3><hr><br>
                                 
                                 

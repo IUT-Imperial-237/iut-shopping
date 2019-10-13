@@ -28,13 +28,21 @@
                             <div class="col-lg-8"><br>
                                 <h3 class="lead">My Ads</h3><hr><br>
                                 
+                                <% 
+                                 if(session.getAttribute("deleteMyAdFeedback")!=null){
+                                      System.out.println("do not try me");
+           out.println("<div class='alert alert-success alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
+             out.println("<span aria-hidden='true'>&times;</span></button>");
+                out.println("<strong>"+session.getAttribute("deleteMyAdFeedback")+"</strong> </div>" );
+                            }
                                 
+                                %>
                                 
                                 
                                 <%
                                 System.out.println("i am tester " + request.getParameter("_userId"));
-                                String us =request.getParameter("_userId");
-                                ResultSet rss = product.getMyAdds(us);
+                                String userId =(String)session.getAttribute("authid");
+                                ResultSet rss = product.getMyAdds(userId);
                                 
                                  while(rss.next()){
                                  out.println("<div class='row'> <div class='col-sm-4'>");
@@ -45,8 +53,8 @@
                                 out.println("<span class='price_all_categories'>"+ rss.getString("price")+" TK"+"</span>") ;
                                 out.println(" </div>");
                                 out.println(" <div class='col-sm-1'>");
-                                out.println("<a href='#'>" + "<button class='btn_edite'><i class='fa fa-edit'></i></button><br><br></a>");
-                                 out.println("<a href='#'>" +"<button class='btn_delete'><i class='fa fa-trash'></i></button>");
+                                out.println("<a href=editad.jsp?adId="+rss.getString("id")+">" + "<button class='btn_edite'><i class='fa fa-edit'></i></button><br><br></a>");
+                                  out.println("<a href=usersManagement?action=deleteMyAd&id=" + rss.getString("id")+ ">" +"<button class='btn_delete'><i class='fa fa-trash'></i></button></a>");
                                  out.println("</div> </div><hr>");
                                  }
                                 

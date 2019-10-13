@@ -32,6 +32,18 @@ public class products implements java.io.Serializable{
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
+            
+            
+             public ResultSet getProductsByCat(String catName) throws SQLException {
+        
+        System.out.println("i am the query master " + catName );
+         rs = st.executeQuery("select * from products where category=" + catName+ " and isActive='"+"1'");
+        
+        return rs;
+        
+        
+        
+    }
     
     public ResultSet getSingleProducts(int id) throws SQLException {
         
@@ -48,6 +60,14 @@ public class products implements java.io.Serializable{
           System.out.println("nestis " + _id);
           int rid = Integer.parseInt(_id);
         rs = st.executeQuery("select *  from products where user=" + rid);
+
+        return rs;
+    }
+      
+       public ResultSet getMyAddsById(String _id) throws SQLException {
+          System.out.println("nestis " + _id);
+          int rid = Integer.parseInt(_id);
+        rs = st.executeQuery("select *  from products where id=" + rid);
 
         return rs;
     }
@@ -89,6 +109,33 @@ public class products implements java.io.Serializable{
         
         return price;
     }
+           
+     
+      public int  editAd(products p) throws SQLException {
+       String qer ="UPDATE products SET title='"+p.getTitle()+"',"+ " price='"+p.getPrice()+"',"+" description='"+p.getDescription()+"',"+" phone='"+p.getPhone()+"'"+ "where id="+p.getId();
+       int flag = st.executeUpdate(qer);
+      System.out.println(qer);
+        if(flag!=0)
+        return flag;
+       else
+           return 1;
+    } 
+     
+            
+         public int  deleteMyAd(int id) throws SQLException {
+       
+       int flag = st.executeUpdate("delete   from products where id=" + id);
+      
+        if(flag!=0)
+        return flag;
+       else
+           return 1;
+    }    
+            
+            
+            
+            
+            
      public boolean addProduct(products p) throws SQLException {
        
       int a = st.executeUpdate("INSERT INTO products (title,description,phone,price,picture,category,user) " +   "VALUES ('" + p.getTitle()+"',"+"'"+ p.getDescription()+"' ," +"'"+ p.getPhone()+"' ,"+p.getPrice()+" ,"+"'"+ p.getPicture()+"'," + "'" + p.getCategory()+ "',"+  p.getUser() +")");

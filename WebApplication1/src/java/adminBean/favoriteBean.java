@@ -27,6 +27,20 @@ public class favoriteBean  implements java.io.Serializable{
         return rs;
     }
     
+    public int addFavorite(int userFav,int productFav) throws SQLException {
+        
+      //String ss =  "insert into  favorites (user,addId) VALUES ("+ userFav +","+productFav+")";
+     int flag = st.executeUpdate("insert into  favorites (user,addId) VALUES ("+ userFav +","+productFav+")");
+      
+       if(flag==0)
+       {
+       return flag;
+       }
+       
+        return 1;
+    }
+    
+    
      public int deleteFavorites(int _id) throws SQLException {
        int flag = st.executeUpdate("delete   from favorites where id=" + _id);
        System.out.println("delete   from favorites where user=" + _id);

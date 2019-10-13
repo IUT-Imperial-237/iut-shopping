@@ -93,6 +93,14 @@
                             }
                                                                       
                                 %>
+                                 <%
+                                 if(session.getAttribute("favoriteFeedback")!=null){
+                                      System.out.println("do not try me");
+           out.println("<div class='alert alert-success alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
+             out.println("<span aria-hidden='true'>&times;</span></button>");
+                out.println("<strong>"+session.getAttribute("favoriteFeedback")+"</strong> </div>" );
+                            }
+                                %>
                         
                     </div>
                     <div class="row">
@@ -114,8 +122,9 @@
                            out.println("</div><br><p>" + rss.getString("description")+"</p></div>") ;                                             
                   out.println("<div class='col-md-1'></div><div class='col-md-4'><br><br><br><br><hr> <span class='tag_price_product'>");      
                         
-                        out.println("TK "+ rss.getString("price")+ "</span> <hr>");                                             
-                            out.println("<div class='like_button'> <span>Save ad as Favorite</span></div><hr>");
+                        out.println("TK "+ rss.getString("price")+ "</span> <hr>");   
+                             if(session.getAttribute("email")!=null)
+                            out.println("<a href=usersManagement?action=saveFavorite&ad_id="+rss.getString("id")+"> <button class='btn btn-secondary btn-sm '>Save  as Favorite</button></a><hr>");
   
                            out.println("<img src='images/call_product.png' alt='call_product' width='15%'> <span> <b> ");
                            out.println(rss.getString("phone")+"</b></span><hr>");
@@ -124,11 +133,11 @@
                             out.println("<a  class='fa_product'  href='#'> <img src='images/twitter_product.jpg' alt='twitter_product' width='20%'></a><hr>");
                          
                             
-                            
+                       if(session.getAttribute("email")!=null){     
                      out.println(" <div class='list-group'> <button type='button' class='list-group-item list-group-item-action active text-center' data-title='Add' data-toggle='modal' data-target='#order'>");
-            out.println("<i class='fas fa-shopping-cart'></i> Place Your Order</button></div>");
-                           
-                            out.println("</div>");    
+                 out.println("<i class='fas fa-shopping-cart'></i> Place Your Order</button></div>");
+                       }     
+                 out.println("</div>");    
                                     
         } %>
                     </div>

@@ -84,6 +84,106 @@ public class usersManagement extends HttpServlet {
             throws ServletException, IOException {
         session = request.getSession();
 
+        if (request.getParameter("action").equals("queryByCat")){
+        
+        RequestDispatcher rd = request.getRequestDispatcher("allcategories.jsp");
+        rd.forward(request, response);
+        
+        
+        }
+        
+         if (request.getParameter("action").equals("deleteMyAd")){
+        
+            products p = new products();
+           
+            int productId = Integer.parseInt(request.getParameter("id"));
+           // System.out.println("checker of fav : "+userFav+" "+ productFav );
+              try {
+                int flag = p.deleteMyAd(productId);
+                if (flag != 0) {
+
+                    session.setAttribute("deleteMyAdFeedback", "ad deleted successfully");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+
+                } else {
+                    session.setAttribute("deleteMyAdFeedback", "Error occured when deleting  your ad please try again!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        if (request.getParameter("action").equals("saveFavorite")){
+        
+            favoriteBean fav = new favoriteBean();
+            int userFav  = Integer.parseInt((String) session.getAttribute("authid"));
+            int productFav = Integer.parseInt(request.getParameter("ad_id"));
+           // System.out.println("checker of fav : "+userFav+" "+ productFav );
+              try {
+                int flag = fav.addFavorite(userFav,productFav);
+                if (flag != 0) {
+
+                    session.setAttribute("favoriteFeedback", "Favorite added successfully");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+
+                } else {
+                    session.setAttribute("favoriteFeedback", "Error occured when adding to your favorite please try again!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        
+        }
+        
+        
+        
+        
+        
+        
         if (request.getParameter("action").equals("cancelOrder")) {
             ordersBean ord = new ordersBean();
             try {
@@ -156,6 +256,40 @@ public class usersManagement extends HttpServlet {
         session = request.getSession();
         products p = new products();
         ordersBean order = new ordersBean();
+        
+        
+        
+        if (request.getParameter("action").equals("editad")){
+            
+            p.setTitle(request.getParameter("title"));
+            p.setPhone(request.getParameter("phone"));
+            p.setPrice(Integer.parseInt(request.getParameter("price")));
+            p.setDescription(request.getParameter("description"));
+            p.setId(Integer.parseInt(request.getParameter("adId")));
+            
+             try {
+                int flag = p.editAd(p);
+                if (flag != 0) {
+                    session.setAttribute("editadFeedback", "your ad has been Modified successfully!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+                } else {
+                    session.setAttribute("editadFeedback", "Sorry we are unable to edit your ad . try again!!!");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        
+        
+        
+        }
+        
 
         if (request.getParameter("action").equals("placeOrder")) {
             int x = ThreadLocalRandom.current().nextInt(00001, 99999 + 1);

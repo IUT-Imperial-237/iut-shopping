@@ -34,7 +34,7 @@
                                     <%
                                     if(session.getAttribute("cancelationFeedback")!=null){
                                     
-                                      out.println("<div class='alert alert-warning alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
+                                      out.println("<div class='alert alert-success alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong>"+session.getAttribute("cancelationFeedback")+"</strong> </div>" );
                                     }
@@ -44,7 +44,7 @@
                                         <div class="table-responsive ">
                                             <table id="mytable" class="table table-bordred table-striped table-hover">
                                                 <thead>
-                                                <th>Order code</th>
+                                                <th>code</th>
                                                 <th>Designation</th>
                                                 <th>Date </th>
                                                 <th>Amount</th>
