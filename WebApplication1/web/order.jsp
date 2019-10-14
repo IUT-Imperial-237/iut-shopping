@@ -38,6 +38,7 @@
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong>"+session.getAttribute("cancelationFeedback")+"</strong> </div>" );
                                     }
+                                    session.removeAttribute("cancelationFeedback");
                                     %>
                                     <div class="col-md-12">
                                         

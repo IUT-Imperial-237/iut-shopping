@@ -133,30 +133,28 @@
                         <div class="col-md-1"></div>
 
                         <div class="col-md-5">
-                            
-                            <%
-                            ResultSet rss = product.getProductsByCat(request.getParameter("catVal"));
-                            
-                              
-                                   while(rss.next()){
-                                        
-            out.println(" <a href='product.jsp?action=productDetails&productId=" +rss.getString("id")+ "' class='border_all_categories'>" );
-            out.println("<div class='row'><div class='col-sm-4'>");
-          out.println(" <img src='productPicture/"+rss.getString("picture")+"'"+  "class='img-thumbnail' alt='product image' width='100' height='100'>");
-                        out.println("</div><div class='col-sm-8'><h5><b>"+ rss.getString("title")+"</b></h5><br>");           
-                         out.println("<span class='price_all_categories'> TK  "+rss.getString("price")+"</span></div></div>");
-                         out.println("<span class='time_all_categories'>"+  rss.getString("created_at")+"</span><br></a><hr>");
-                                   }
+
+                            <%                                ResultSet rss = product.getProductsByCat(request.getParameter("catVal"));
+
+                                while (rss.next()) {
+
+                                    out.println(" <a href='product.jsp?action=productDetails&productId=" + rss.getString("id") + "' class='border_all_categories'>");
+                                    out.println("<div class='row'><div class='col-sm-4'>");
+                                    out.println(" <img src='productPicture/" + rss.getString("picture") + "'" + "class='img-thumbnail' alt='product image' width='100' height='100'>");
+                                    out.println("</div><div class='col-sm-8'><h5><b>" + rss.getString("title") + "</b></h5><br>");
+                                    out.println("<span class='price_all_categories'> TK  " + rss.getString("price") + "</span></div></div>");
+                                    out.println("<span class='time_all_categories'>" + rss.getString("created_at") + "</span><br></a><hr>");
+                                }
                             %>
-                          
-                            
-                 
+
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         <br><br><br>
+        <br><br><br>
 
 
         <!-- all categories fin -->

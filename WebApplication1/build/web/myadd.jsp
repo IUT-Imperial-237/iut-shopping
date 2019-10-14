@@ -35,6 +35,7 @@
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong>"+session.getAttribute("deleteMyAdFeedback")+"</strong> </div>" );
                             }
+                                 session.removeAttribute("deleteMyAdFeedback");
                                 
                                 %>
                                 

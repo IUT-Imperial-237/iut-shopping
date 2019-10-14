@@ -14,7 +14,7 @@ import java.sql.Statement;
  * @author IUT
  */
 public class ordersBean implements java.io.Serializable{
-       private String orderCode, name, address, created_at, phone,state,price,designation;
+       private String orderCode, name, address, created_at, phone,state,price,designation,isState;
 
     public String getDesignation() {
         return designation;
@@ -57,6 +57,45 @@ public class ordersBean implements java.io.Serializable{
 
         return rs;
     }
+       
+       // karim debut method pour le state dans le javabean et isState est declarer haut
+    
+    public int EditeState(int id) throws SQLException {
+
+        int a = 0;
+
+        String flag = this.getIsState(id);
+          if (flag.equals("0")) {
+            a = st.executeUpdate("UPDATE orders SET state ='1' WHERE orders.id =" + id);
+
+        }
+        if (flag.equals("1")) {
+            System.out.println("i am testing the value of state "+ flag);
+            a = st.executeUpdate("UPDATE orders SET state='2' WHERE orders.id =" + id);
+
+        }
+        if (flag.equals("2")) {
+            a = st.executeUpdate("UPDATE orders SET state ='0' WHERE orders.id =" + id);
+
+        }
+      
+        if (a == 0) {
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+      public String getIsState(int id) throws SQLException {
+        rs = st.executeQuery("select state  from orders where id=" + id);
+        rs.next();
+        this.isState = rs.getString("state");
+           System.out.println("testing isstate last "+ isState);
+        return isState;
+    }
+    public void setIsState(String isState) {
+        this.isState = isState;
+    }
+    // karim fin method pour le state dans le javabean
      
       public ResultSet getOrders(int _id) throws SQLException {
        rs = st.executeQuery("select *  from orders where user=" + _id);

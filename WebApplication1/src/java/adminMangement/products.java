@@ -16,7 +16,7 @@ import java.sql.Statement;
  * @author IUT
  */
 public class products implements java.io.Serializable{
-    private String title, description, picture, isBlocked,isValidate,phone,created_at,category;
+    private String title, description, picture, isBlocked,isValidate,phone,created_at,category,isActive;
     private long id , user;
     private int price;
     private Statement st = null;
@@ -55,6 +55,52 @@ public class products implements java.io.Serializable{
         
         
     }
+    
+    //       abdelkarim InactivateProduct debut isActive is declare en haut
+       
+       
+          public ResultSet getAllProductsToAdmin() throws SQLException {
+
+        rs = st.executeQuery("select *  from products");
+
+        return rs;
+    }
+       
+       public String getIsActive(int id) throws SQLException {
+        rs = st.executeQuery("select isActive from products where id=" + id);
+        rs.next();
+        this.isActive = rs.getString("isActive");
+
+        return isActive;
+    }
+       
+        public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
+        
+       
+       public int ActivateProduct(int id) throws SQLException {
+
+        int b = 0;
+
+        String flag = this.getIsActive(id);
+        if (flag.equals("1")) {
+            b = st.executeUpdate("UPDATE products SET isActive='0' WHERE products.id =" + id);
+
+        }
+        if (flag.equals("0")) {
+            b = st.executeUpdate("UPDATE products SET isActive ='1' WHERE products.id =" + id);
+
+        }
+        if (b == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+       
+//       abdelkarim InactivateProduct fin
+
 
       public ResultSet getMyAdds(String _id) throws SQLException {
           System.out.println("nestis " + _id);

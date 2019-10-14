@@ -34,12 +34,13 @@
 					</span>
                                   <%
                                    if(session.getAttribute("notification")!=null)
-                                
+                                    
                                        out.println("<h3 style='color:red;'>"+ session.getAttribute("notification")+"</h3>");
-                                  
+                                  session.removeAttribute("notification");
                                     if(session.getAttribute("errorLogin")!=null)
                                 
                                        out.println("<h3 style='color:red;'>"+ session.getAttribute("errorLogin")+"</h3>"); 
+                                    session.removeAttribute("errorLogin");
                                         %>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email">

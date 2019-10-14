@@ -32,6 +32,7 @@
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong>"+session.getAttribute("favoriteDeletion")+"</strong> </div>" );
                             }
+                                session.removeAttribute("favoriteDeletion");
          %>
                                
                                 <h3 class="lead">My Favorite</h3><hr><br>

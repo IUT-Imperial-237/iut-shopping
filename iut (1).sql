@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2019 at 05:11 PM
+-- Generation Time: Oct 14, 2019 at 10:06 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -50,6 +50,31 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `favorites`
+--
+
+CREATE TABLE `favorites` (
+  `id` bigint(20) NOT NULL,
+  `user` bigint(20) NOT NULL,
+  `addId` bigint(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`id`, `user`, `addId`, `created_at`) VALUES
+(9, 1, 19, '2019-10-13 10:59:39'),
+(10, 1, 19, '2019-10-13 14:34:35'),
+(11, 1, 19, '2019-10-14 07:47:54'),
+(12, 1, 19, '2019-10-14 07:52:27'),
+(13, 1, 19, '2019-10-14 07:56:17'),
+(14, 1, 19, '2019-10-14 07:56:29');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -60,8 +85,22 @@ CREATE TABLE `orders` (
   `address` varchar(150) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `price` bigint(20) NOT NULL,
-  `state` varchar(3) NOT NULL
+  `state` varchar(3) NOT NULL DEFAULT '0',
+  `user` bigint(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `designation` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `orderCode`, `Name`, `address`, `phone`, `price`, `state`, `user`, `created_at`, `designation`) VALUES
+(1, 'ord92928', 'ad', 'dsds', '11111111111', 17500, '2', 1, '2019-10-12 22:59:48', 'Xiaomi Redmi Note 7 Pro 4/64 Snapdragon 675'),
+(2, 'ord87626', 'tgrht', 'trthtrh', '11111111111', 17500, '1', 1, '2019-10-12 23:02:29', 'Xiaomi Redmi Note 7 Pro 4/64 Snapdragon 675'),
+(3, 'ord52522', '45t54rgr', 'ttrttgt', '22222222222', 17500, '1', 1, '2019-10-12 23:05:00', 'Xiaomi Redmi Note 7 Pro 4/64 Snapdragon 675'),
+(4, 'ord56332', 'aly abdelkader gelany', 'iut room 440 sout', '1872438617', 123, '2', 1, '2019-10-14 07:48:29', 'iphone 11'),
+(5, 'ord40391', 'tani barkat', 'roo 548 north', '1872438619', 123, '0', 1, '2019-10-14 07:52:55', 'iphone 11');
 
 -- --------------------------------------------------------
 
@@ -70,7 +109,7 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+  `id` bigint(11) NOT NULL,
   `user` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
   `category` varchar(60) NOT NULL,
@@ -88,7 +127,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `user`, `title`, `category`, `description`, `picture`, `phone`, `price`, `isBlocked`, `isActive`, `created_at`) VALUES
-(16, 1, 'Xiaomi Redmi Note 7 Pro 4/64 Snapdragon 675', 'MOBILE PHONES', '- 48.0MP Big Camera\r\n- Waterdroof Display\r\n- Brand : Xiaomi\r\n- Model : Redmi Note 7 pro (4-64GB)\r\n- Display : 6.3\" Waterdroop Display\r\n- System : Android 9.0 !! MIUI 10.3\r\n- CPU : Qualcomm Snapdragon 675 !! Octa core 2.2GHz\r\n- RAM : 4GB\r\n- ROM : 64GB\r\n- Back Camera : 48.0MP + 5.0MP Dual Rear Camera\r\n- Selfy Camera : 13.0MP\r\n- Battery : 4000mAh\r\n- Color : Blue/Red/Black color avalable', 'prod6509.png', '01872438617', 17500, '0', '1', '2019-10-12 05:32:03');
+(17, 1, 'Hp core i5 metalbody full fresh laptop low price', 'ELECTRONIC', 'Laptop Configure : Processor core i5\r\nclock speed : 2.70 GHZ\r\n%% Ram : 4 Gb DDR3 (16 GB Usable)\r\n%% Hard Disk 320GB\r\n%% Intel HD Graphics 3000\r\n%% Display 14\"\r\n%% Battery 6 cell lion Battery\r\n%% Backup : Minimum 4/5 Hours\r\n%% Web cam 3 MP\r\n%% Color : Black\r\n%% Usb port 4\r\n%% Hdmi port : 1', 'prod61547.png', '01872438619', 55000, '0', '1', '2019-10-13 09:22:43'),
+(19, 1, 'iphone 11', 'MOBILE PHONES', 'best iphone', 'prod42182.png', '01872438617', 123, '0', '1', '2019-10-13 10:34:38'),
+(20, 1, 'ET-103 home gym bench', 'LEISURE, SPORTS', 'Train your stomach, back & hips muscles\r\nHeight: adjustable footerst\r\nBackrest: adjustable\r\nUpholstered comfort backrest\r\nFoldable\r\nLoad max: 100kg\r\nG.W.: 14kgs\r\nN.W.: 12.4kgs\r\nPacking: 1235 x 180 x 340mm\r\nLoading QTY: 20?/40?/40?HQ: 390/840/905pcs', 'prod97136.png', '01872438617', 5000, '0', '1', '2019-10-13 14:20:08');
 
 -- --------------------------------------------------------
 
@@ -139,6 +180,14 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `favorites`
+--
+ALTER TABLE `favorites`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`,`addId`),
+  ADD KEY `addId` (`addId`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -176,16 +225,22 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `favorites`
+--
+ALTER TABLE `favorites`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -202,6 +257,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `favorites`
+--
+ALTER TABLE `favorites`
+  ADD CONSTRAINT `Foreign_key_add_id` FOREIGN KEY (`addId`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Foreign_key_user` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subcategories`

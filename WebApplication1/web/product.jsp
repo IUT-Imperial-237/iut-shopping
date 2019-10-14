@@ -91,7 +91,8 @@
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong class='text-center'>"+session.getAttribute("placeOrderFeedback")+"</strong> </div>" );
                             }
-                                                                      
+                             
+                             session.removeAttribute("placeOrderFeedback");
                                 %>
                                  <%
                                  if(session.getAttribute("favoriteFeedback")!=null){
@@ -100,6 +101,8 @@
              out.println("<span aria-hidden='true'>&times;</span></button>");
                 out.println("<strong>"+session.getAttribute("favoriteFeedback")+"</strong> </div>" );
                             }
+                                 session.removeAttribute("favoriteFeedback");
+                                 
                                 %>
                         
                     </div>

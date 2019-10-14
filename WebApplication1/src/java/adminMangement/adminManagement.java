@@ -5,6 +5,7 @@
  */
 package adminMangement;
 
+import adminBean.ordersBean;
 import adminBean.users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -74,6 +75,9 @@ public class adminManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+       products  product = new products();
+       ordersBean orderB =new ordersBean();
         // processRequest(request, response);
         if (request.getParameter("action").equals("dashboard")) {
             response.sendRedirect("admin-pan.jsp");
@@ -113,6 +117,9 @@ public class adminManagement extends HttpServlet {
             }
 
         }
+        
+        
+        
                 
                 
                   if (request.getParameter("action").equals("deleteSubcat")) {
@@ -132,6 +139,55 @@ public class adminManagement extends HttpServlet {
             }
 
         }
+                  
+                  
+                  
+                  
+                  //karim pour activer le product debut
+        
+        if (request.getParameter("action").equals("ActivateProduct")) {
+
+            try {
+                //response.sendRedirect("admin-manage-products.jsp");
+                int i = product.ActivateProduct(Integer.parseInt(request.getParameter("id")));
+
+                if (i == 1) {
+                    response.sendRedirect("admin-manage-products.jsp");
+                } else {
+                    response.sendRedirect("error.jsp");
+                }
+            } catch (SQLException ex) {
+                // System.out.println(ex);
+                Logger.getLogger(adminManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+                //karim pour activer le product fin   
+        
+           // karim debut method for state du order
+        if (request.getParameter("action").equals("EditeState")) {
+
+            try {
+               
+                int i = orderB.EditeState(Integer.parseInt(request.getParameter("id")));
+
+                if (i == 1) {
+                    response.sendRedirect("admin-orders.jsp");
+                }else {
+                    response.sendRedirect("error.jsp");
+                }
+            } catch (SQLException ex) {
+              
+                Logger.getLogger(adminManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        
+        // karim fin method for state du order
+                  
+                  
+                  
+                  
         
                 
 
