@@ -44,10 +44,30 @@ public class products implements java.io.Serializable{
         
         
     }
+             
+             
+                public ResultSet getSimilarProducts(int id) throws SQLException {
+        rs = st.executeQuery("select category from products where id=" + id);
+        String cat="" ;
+        
+        while(rs.next())
+        {
+         cat = rs.getString("category");
+        }
+        String qer ="SELECT * FROM products WHERE category ='"+cat+"'" +" AND id !="+id+ " limit 4";
+         rs = st.executeQuery(qer);
+       
+        return rs;
+        
+        
+        
+    } 
+             
+             
     
     public ResultSet getSingleProducts(int id) throws SQLException {
         
-         System.out.println("select *  from products where id=" + id);
+        
          rs = st.executeQuery("select * from products where id=" + id);
         
         return rs;
@@ -61,7 +81,7 @@ public class products implements java.io.Serializable{
        
           public ResultSet getAllProductsToAdmin() throws SQLException {
 
-        rs = st.executeQuery("select *  from products");
+        rs = st.executeQuery("select *  from products ");
 
         return rs;
     }

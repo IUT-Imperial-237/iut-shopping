@@ -134,7 +134,13 @@
 
                         <div class="col-md-5">
 
-                            <%                                ResultSet rss = product.getProductsByCat(request.getParameter("catVal"));
+                            <%   
+                            ResultSet rss = null;
+                              if(request.getParameter("catVal").equals("All")){
+                                  rss = product.getAllProductsToAdmin();
+                                  }
+                              else
+                             rss = product.getProductsByCat(request.getParameter("catVal"));
 
                                 while (rss.next()) {
 

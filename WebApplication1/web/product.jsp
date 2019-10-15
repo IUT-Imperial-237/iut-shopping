@@ -154,26 +154,26 @@
                 <div class="card-body card_categories">
                     <h4><b>Similar Product</b></h4><hr>
                     <div class="row">
-                        <div class="col-md-3">
-                            <a href="#"><img src="images/gallery-6.jpg" class="mx-auto d-block" width="100%" height="200px"> 
-                                <h4 style="text-align: center;">Image Overlay Title</h4></a>
-                            <p class="price_similar_product" style="text-align: center;">TK 52000</p>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#">  <img src="images/image_1.jpg" class="mx-auto d-block" width="100%" height="200px"> 
-                                <h4 style="text-align: center;">Image Overlay Title</h4></a>
-                            <p class="price_similar_product" style="text-align: center;">TK 52000</p>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#">  <img src="images/image_5.jpg" class="mx-auto d-block" width="100%" height="200px"> 
-                                <h4 style="text-align: center;">Image Overlay Title Image Overlay Title</h4></a>
-                            <p class="price_similar_product" style="text-align: center;">TK 52000</p>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#">  <img src="images/product-1.jpg" class="mx-auto d-block" width="100%" height="200px"> 
-                                <h4 style="text-align: center;">Image Overlay Title</h4></a>
-                            <p class="price_similar_product" style="text-align: center;">TK 52000</p>
-                        </div>
+                        
+                        <%
+                         ResultSet rss2 = product.getSimilarProducts(Integer.parseInt( request.getParameter("productId")));
+                        while(rss2.next()){
+             
+                        out.println(" <div class='col-md-3'>");
+                        out.println(" <a href='product.jsp?action=productDetails&productId=" + rss2.getString("id") + "'>");
+                        out.println(" <img src='productPicture/" + rss2.getString("picture") + "'" + " class='mx-auto d-block' alt='product image' width='100%' height='200px'>");
+                        out.println("<h4 style='text-align: center;'>"+rss2.getString("title")+"</h4></a>");
+                        out.println("<p class='price_similar_product' style='text-align: center;'>" + rss2.getString("price")+" TK</p></div>");
+                        }
+                         
+                         
+                         
+                        %>
+                        
+                   
+                        
+                        
+                  
 
                     </div>
                 </div>
