@@ -4,7 +4,7 @@
           <div class="col-md-4 ">
             <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
               <div><img src="images/informatique.png" alt="ordinateur desktop" class="img-fluid"></div>
-              <h3><a href=usersManagement?action=queryByCat&catVal=ELECTRONIC>Electronic</a></h3>
+              <h3><a href="usersManagement?action=queryByCat&catVal='ELECTRONIC'">Electronic</a></h3>
               <p class="mb-0">Find the best offers for electronics in Iut: computers, laptops, TVs, cameras, etc...
               </p>
             </div>
@@ -20,7 +20,7 @@
           <div class="col-md-4 ">
             <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
               <div><img src="images/education.png" alt="Education" class="img-fluid"></div>
-              <h3><a href=usersManagement?action=queryByCat&catVal=EDUCATION>Education</a></h3>
+              <h3><a href="usersManagement?action=queryByCat&catVal='EDUCATION'">Education</a></h3>
               <p class="mb-0">Buy and Sell New and Used School Books and Supplies, and Other Educational Resources.</p>
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="col-md-4">
             <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
               <div><img src="images/service.png" alt="Maintenancier " class="img-fluid"></div>
-              <h3><a href=usersManagement?action=queryByCat&catVal=SERVICES>Services</a></h3>
+              <h3><a href="usersManagement?action=queryByCat&catVal='SERVICES'">Services</a></h3>
               <p class="mb-0"> Browse a range of service offerings in areas such as hairdressing, travel,
                 electronics, mechanics and other types of services.</p>
             </div>

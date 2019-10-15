@@ -30,38 +30,18 @@
     </head>
 
     <body>
-<!--        <section class="menu cid-rCr3rxTYyn" once="menu" id="menu1-7">
-            <nav
-                class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                        <li class="nav-item">
-                            <a class="nav-link link text-white display-4" href="#">
-                                <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                                Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link text-white display-4" href="#">
-                                <span class="mbri-italic mbr-iconfont mbr-iconfont-btn"></span>
-                                About Us
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </section>-->
-       <%@ include file="header.jsp" %>
 
+       <%@ include file="header.jsp" %>
+<%
+   if(session.getAttribute("registrationFeedback")!=null){
+           out.println("<div class='alert alert-success alert-dismissible fade show' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'>");
+             out.println("<span aria-hidden='true'>&times;</span></button>");
+                out.println("<strong class='text-center'>"+session.getAttribute("registrationFeedback")+"</strong> </div>" );
+                            }
+                             
+                             session.removeAttribute("registrationFeedback");
+
+%>
 
         <section class="mbr-section form4 cid-rCrL0jKCa8" id="form4-8">
             <div class="container align-center">
@@ -89,7 +69,7 @@
                         </div>
                         <div data-form-type="formoid">
                             <!---FormBuilder Form--->
-                            <form action="#" method="POST" class="mbr-form form-with-styler"
+                            <form action=usersManagement?action=registration method="POST" class="mbr-form form-with-styler"
                                   data-form-title="Registration Form" id="registration">
                                 <div class="dragArea row">
                                     <div class="col-md-12  form-group" data-for="name">
@@ -127,32 +107,11 @@
             </div>
         </section>
 
-<!--        <section once="footers" class="cid-rCrMeoHEPa" id="footer7-9">
-            <div class="container">
-                <div class="media-container-row align-center mbr-white">
-                    <div class="row row-links">
-                        <ul class="foot-menu">
-                            <li class="foot-menu-item mbr-fonts-style display-7">
-                                <a class="text-white mbr-bold" href="#" target="_blank">About us</a>
-                            </li>
-                            <li class="foot-menu-item mbr-fonts-style display-7">
-                                <a class="text-white mbr-bold" href="#" target="_blank">Home Page</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="row row-copirayt">
-                        <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
-                            Â© Copyright 2019 <a href="#">IUT-Imperials</a> @ All Rights Reserved
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>-->
     <%@ include file="frontFooter.jsp" %>
 
 
 
-        <script>
+<!--        <script>
             document.getElementById("registration").addEventListener("submit", function (e) {
                 e.preventDefault();
                 var password = document.getElementById("password").value;
@@ -165,7 +124,7 @@
                     alert("Password must be at least 8 characters minimum...");
                 }
             });
-        </script>
+        </script>-->
         <script src="assets/web/assets/jquery/jquery.min.js"></script>
         <script src="assets/popper/popper.min.js"></script>
         <script src="assets/tether/tether.min.js"></script>
@@ -175,7 +134,7 @@
         <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
         <script src="assets/smoothscroll/smooth-scroll.js"></script>
         <script src="assets/theme/js/script.js"></script>
-        <script src="assets/formoid/formoid.min.js"></script>
+<!--        <script src="assets/formoid/formoid.min.js"></script>-->
 
 
 

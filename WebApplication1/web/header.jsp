@@ -32,12 +32,12 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">Catetoyies</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href=usersManagement?action=queryByCat&catVal=ELECTRONIC>Electronic</a>
+              <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='ELECTRONIC'">Electronic</a>
               <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='MOBILE PHONES'">Mobile Phone</a>
-              <a class="dropdown-item" href=usersManagement?action=queryByCat&catVal=EDUCATION>Education</a>
+              <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='EDUCATION'">Education</a>
               <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='LEISURE, SPORTS'">Sport</a>
               <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='FASHION AND CLOTHING'">Fashion &amp; Clothing</a>
-              <a class="dropdown-item" href=usersManagement?action=queryByCat&catVal=SERVICES>Services</a>
+              <a class="dropdown-item" href="usersManagement?action=queryByCat&catVal='SERVICES'">Services</a>
             </div>
           </li>
             <% session = request.getSession();

@@ -122,30 +122,7 @@ public class usersManagement extends HttpServlet {
         
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
         
         
         
@@ -256,7 +233,32 @@ public class usersManagement extends HttpServlet {
         session = request.getSession();
         products p = new products();
         ordersBean order = new ordersBean();
+        if (request.getParameter("action").equals("registration")){
         
+        users us = new users();
+        us.setName(request.getParameter("name"));
+        us.setEmail(request.getParameter("email"));
+        us.setPassword(request.getParameter("password"));
+            try {
+                int flag = us.registerUser(us);
+                
+                  if (flag != 0) {
+                    session.setAttribute("registrationFeedback", "registration completed successfully use your credentials to login");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+                } else {
+                    session.setAttribute("registrationFeedback", "sorry unable to register  now please try again");
+                    String url = request.getHeader("referer");
+
+                    response.sendRedirect(url);
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(usersManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
         
         
         if (request.getParameter("action").equals("editad")){

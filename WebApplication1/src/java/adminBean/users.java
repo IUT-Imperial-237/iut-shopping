@@ -81,6 +81,18 @@ public class users implements java.io.Serializable {
 
         return rs;
     }
+    
+    
+     public int registerUser(users us) throws SQLException {
+
+        
+ int a = st.executeUpdate("INSERT INTO users (name,email,password) " +   "VALUES ('" + us.getName()+"',"+"'"+ us.getEmail()+"' ," +"'"+ us.getPassword()+"'"+ ")");
+  
+        if(a!=0)
+        return 1;
+       else
+           return 0;
+    }
 
     public int deleteUser(int id) throws SQLException {
 
