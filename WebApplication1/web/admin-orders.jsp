@@ -51,7 +51,24 @@
 
                             out.println("<td>" + rss.getString("phone") + "</td>");
                             out.println("<td>" + rss.getString("price") + "</td>");
-                            out.println("<td>" + rss.getString("state") + "</td>");
+                            
+                            if(rss.getString("state").equals("0"))
+                            {
+                            out.println("<td>Pending</td>");
+                            }
+                            
+                              if(rss.getString("state").equals("1"))
+                            {
+                            out.println("<td>Delivered</td>");
+                            }
+                                if(rss.getString("state").equals("2"))
+                            {
+                            out.println("<td>Canceled</td>");
+                            }
+                            
+                            
+                            
+                            
                             out.println("<td><a href=adminManagement?action=EditeState&id=" + rss.getString("id") + ">");
                             out.println(" <p data-placement='top' data-toggle='tooltip' title='Block'><button class='btn btn-success btn-xs' data-title='Edit'  ><i class='fas fa-edit'></i></button></p></a></td></tr>");
                         }

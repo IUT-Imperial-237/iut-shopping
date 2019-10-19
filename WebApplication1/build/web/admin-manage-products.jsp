@@ -55,7 +55,18 @@
                             out.println("<td>" + rss.getString("title") + "</td>");
                             out.println("<td>" + rss.getString("price") + "</td>");
                             out.println("<td>" + rss.getString("user") + "</td>");
-                            out.println("<td>" + rss.getString("isActive") + "</td>");
+                            
+                            if(rss.getString("isActive").equals("1"))
+                            {
+                            out.println("<td> Actived </td>");
+                            }
+                            
+                             if(rss.getString("isActive").equals("0"))
+                            {
+                            out.println("<td> Desactived </td>");
+                            }
+                            
+                            
                              out.println("<td><a href=adminManagement?action=ActivateProduct&id="+rss.getString("id") + ">");
                             out.println("<p data-placement='top' data-toggle='tooltip' title='Block'><button class='btn btn-success btn-xs' data-title='Edit' data-toggle='modal' data-target='#block' ><i class='fas fa-edit'></i></button></p></a></td>");
                             out.println("<td><a href=product.jsp?action=productDetails&productId=" + rss.getString("id") + ">");
